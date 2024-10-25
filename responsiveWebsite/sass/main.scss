@@ -1,0 +1,38 @@
+//Note the order of this stuff is important. It won't work if they are out of whack!
+
+@import "../node_modules/bootstrap/scss/functions";
+
+
+$primary: black;
+
+
+
+//Variables / mixins / functions
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+
+$custom-colors: (
+    "tertiary": orange,
+    "tertiary-light": rgb(187, 122, 2),
+    "tertiary-dark": rgb(87, 56, 0)
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+
+//For each loop that creates a light and dark version for each colour in the "colors" (american spelling) array
+@each $color, $value in $colors {
+    .bg-#{$color}{
+        background-color: $value
+    }
+    .bg-#{color}-light{
+        background-color: tint-color($value, 60%)
+    }
+    .bg-#{color}-dark{
+        background-color: shade-color($value, 20%)
+    }
+}
+
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
